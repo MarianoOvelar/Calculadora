@@ -17,9 +17,10 @@ namespace Calculadora
                 if (opcionElegida > 0 && opcionElegida <= opcionesMax) break;
                 else Console.WriteLine($"Solo puede elegir opciones del 1 al {opcionesMax}");
             }
+
             return opcionElegida;
         }
-      
+
         static private int pedirNumero()
         {
             int num = 0;
@@ -32,13 +33,13 @@ namespace Calculadora
         static public bool Salir()
         {
             Console.WriteLine("Ingrese S para salir!!");
-             res = Console.ReadLine();
+            res = Console.ReadLine();
             return res is "s" || res is "S" ? false : true;
         }
         static private string? res = "";
         static private string newL = Environment.NewLine;
-        static private string opciones = $"1_ Suma{newL}2_ Resta{newL}3_ Multiplicaciones{newL}4_ Divicion{newL}Elija la operacion a realizar!!";
+        static private string opciones = $"1_ Suma{newL}2_ Resta{newL}3_ Multiplicaciones{newL}4_ Divicion{newL}5_ Salir{newL}Elija la operacion a realizar!!";
         static private int opcionElegida = 0;
-        static private int opcionesMax = 4;
+        static private int opcionesMax = 5;
     }
 }

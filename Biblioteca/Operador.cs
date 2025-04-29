@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculadora
 {
-    internal class Operador
+    public class Operador
     {
         private delegate float Operacion(float[] num);
         static private Dictionary<int, Operacion> operaciones = new Dictionary<int, Operacion>();
