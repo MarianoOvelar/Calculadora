@@ -38,7 +38,7 @@
             Btn8 = new Button();
             Btn9 = new Button();
             BtnComa = new Button();
-            BtnResultado = new Button();
+            BtnIgual = new Button();
             BtnDivicion = new Button();
             BtnMultipicacion = new Button();
             BtnSuma = new Button();
@@ -46,7 +46,8 @@
             BtnBorrar = new Button();
             BtnBorrarTodo = new Button();
             Btn0 = new Button();
-            lbSalidaResultado = new Label();
+            lbNumero = new Label();
+            lbFormula = new Label();
             SuspendLayout();
             // 
             // Btn1
@@ -55,7 +56,7 @@
             Btn1.FlatStyle = FlatStyle.Popup;
             Btn1.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn1.ForeColor = SystemColors.ActiveCaptionText;
-            Btn1.Location = new Point(15, 80);
+            Btn1.Location = new Point(13, 132);
             Btn1.Name = "Btn1";
             Btn1.Size = new Size(77, 60);
             Btn1.TabIndex = 0;
@@ -70,7 +71,7 @@
             Btn2.FlatStyle = FlatStyle.Popup;
             Btn2.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn2.ForeColor = SystemColors.ActiveCaptionText;
-            Btn2.Location = new Point(98, 80);
+            Btn2.Location = new Point(96, 132);
             Btn2.Name = "Btn2";
             Btn2.Size = new Size(77, 60);
             Btn2.TabIndex = 1;
@@ -85,7 +86,7 @@
             Btn3.FlatStyle = FlatStyle.Popup;
             Btn3.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn3.ForeColor = SystemColors.ActiveCaptionText;
-            Btn3.Location = new Point(181, 80);
+            Btn3.Location = new Point(179, 132);
             Btn3.Name = "Btn3";
             Btn3.Size = new Size(77, 60);
             Btn3.TabIndex = 2;
@@ -100,7 +101,7 @@
             Btn4.FlatStyle = FlatStyle.Popup;
             Btn4.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn4.ForeColor = SystemColors.ActiveCaptionText;
-            Btn4.Location = new Point(15, 146);
+            Btn4.Location = new Point(13, 198);
             Btn4.Name = "Btn4";
             Btn4.Size = new Size(77, 60);
             Btn4.TabIndex = 3;
@@ -115,7 +116,7 @@
             Btn5.FlatStyle = FlatStyle.Popup;
             Btn5.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn5.ForeColor = SystemColors.ActiveCaptionText;
-            Btn5.Location = new Point(99, 146);
+            Btn5.Location = new Point(97, 198);
             Btn5.Name = "Btn5";
             Btn5.Size = new Size(77, 60);
             Btn5.TabIndex = 4;
@@ -130,7 +131,7 @@
             Btn6.FlatStyle = FlatStyle.Popup;
             Btn6.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn6.ForeColor = SystemColors.ActiveCaptionText;
-            Btn6.Location = new Point(183, 146);
+            Btn6.Location = new Point(181, 198);
             Btn6.Name = "Btn6";
             Btn6.Size = new Size(77, 60);
             Btn6.TabIndex = 5;
@@ -145,7 +146,7 @@
             Btn7.FlatStyle = FlatStyle.Popup;
             Btn7.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn7.ForeColor = SystemColors.ActiveCaptionText;
-            Btn7.Location = new Point(15, 212);
+            Btn7.Location = new Point(13, 264);
             Btn7.Name = "Btn7";
             Btn7.Size = new Size(77, 60);
             Btn7.TabIndex = 6;
@@ -160,7 +161,7 @@
             Btn8.FlatStyle = FlatStyle.Popup;
             Btn8.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn8.ForeColor = SystemColors.ActiveCaptionText;
-            Btn8.Location = new Point(99, 212);
+            Btn8.Location = new Point(97, 264);
             Btn8.Name = "Btn8";
             Btn8.Size = new Size(77, 60);
             Btn8.TabIndex = 7;
@@ -175,7 +176,7 @@
             Btn9.FlatStyle = FlatStyle.Popup;
             Btn9.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn9.ForeColor = SystemColors.ActiveCaptionText;
-            Btn9.Location = new Point(183, 212);
+            Btn9.Location = new Point(181, 264);
             Btn9.Name = "Btn9";
             Btn9.Size = new Size(77, 60);
             Btn9.TabIndex = 8;
@@ -190,7 +191,7 @@
             BtnComa.FlatStyle = FlatStyle.Popup;
             BtnComa.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             BtnComa.ForeColor = SystemColors.ActiveCaptionText;
-            BtnComa.Location = new Point(349, 212);
+            BtnComa.Location = new Point(347, 264);
             BtnComa.Name = "BtnComa";
             BtnComa.Size = new Size(77, 60);
             BtnComa.TabIndex = 10;
@@ -199,20 +200,20 @@
             BtnComa.UseVisualStyleBackColor = false;
             BtnComa.Click += BtnComa_Click;
             // 
-            // BtnResultado
+            // BtnIgual
             // 
-            BtnResultado.BackColor = SystemColors.ActiveCaption;
-            BtnResultado.FlatStyle = FlatStyle.Popup;
-            BtnResultado.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
-            BtnResultado.ForeColor = SystemColors.ActiveCaptionText;
-            BtnResultado.Location = new Point(351, 278);
-            BtnResultado.Name = "BtnResultado";
-            BtnResultado.Size = new Size(77, 60);
-            BtnResultado.TabIndex = 11;
-            BtnResultado.TabStop = false;
-            BtnResultado.Text = "=";
-            BtnResultado.UseVisualStyleBackColor = false;
-            BtnResultado.Click += BtnResultado_Click;
+            BtnIgual.BackColor = SystemColors.ActiveCaption;
+            BtnIgual.FlatStyle = FlatStyle.Popup;
+            BtnIgual.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
+            BtnIgual.ForeColor = SystemColors.ActiveCaptionText;
+            BtnIgual.Location = new Point(349, 330);
+            BtnIgual.Name = "BtnIgual";
+            BtnIgual.Size = new Size(77, 60);
+            BtnIgual.TabIndex = 11;
+            BtnIgual.TabStop = false;
+            BtnIgual.Text = "=";
+            BtnIgual.UseVisualStyleBackColor = false;
+            BtnIgual.Click += BtnIgual_Click;
             // 
             // BtnDivicion
             // 
@@ -220,7 +221,7 @@
             BtnDivicion.FlatStyle = FlatStyle.Popup;
             BtnDivicion.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             BtnDivicion.ForeColor = SystemColors.ActiveCaptionText;
-            BtnDivicion.Location = new Point(266, 278);
+            BtnDivicion.Location = new Point(264, 330);
             BtnDivicion.Name = "BtnDivicion";
             BtnDivicion.RightToLeft = RightToLeft.No;
             BtnDivicion.Size = new Size(77, 60);
@@ -236,7 +237,7 @@
             BtnMultipicacion.FlatStyle = FlatStyle.Popup;
             BtnMultipicacion.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             BtnMultipicacion.ForeColor = SystemColors.ActiveCaptionText;
-            BtnMultipicacion.Location = new Point(266, 212);
+            BtnMultipicacion.Location = new Point(264, 264);
             BtnMultipicacion.Name = "BtnMultipicacion";
             BtnMultipicacion.Size = new Size(77, 60);
             BtnMultipicacion.TabIndex = 13;
@@ -251,7 +252,7 @@
             BtnSuma.FlatStyle = FlatStyle.Popup;
             BtnSuma.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             BtnSuma.ForeColor = SystemColors.ActiveCaptionText;
-            BtnSuma.Location = new Point(266, 80);
+            BtnSuma.Location = new Point(264, 132);
             BtnSuma.Name = "BtnSuma";
             BtnSuma.Size = new Size(77, 60);
             BtnSuma.TabIndex = 14;
@@ -267,7 +268,7 @@
             BtnResta.FlatStyle = FlatStyle.Popup;
             BtnResta.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             BtnResta.ForeColor = SystemColors.ActiveCaptionText;
-            BtnResta.Location = new Point(266, 146);
+            BtnResta.Location = new Point(264, 198);
             BtnResta.Name = "BtnResta";
             BtnResta.Size = new Size(77, 60);
             BtnResta.TabIndex = 15;
@@ -283,7 +284,7 @@
             BtnBorrar.FlatStyle = FlatStyle.Popup;
             BtnBorrar.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             BtnBorrar.ForeColor = SystemColors.ActiveCaptionText;
-            BtnBorrar.Location = new Point(351, 80);
+            BtnBorrar.Location = new Point(349, 132);
             BtnBorrar.Name = "BtnBorrar";
             BtnBorrar.Size = new Size(77, 60);
             BtnBorrar.TabIndex = 17;
@@ -298,7 +299,7 @@
             BtnBorrarTodo.FlatStyle = FlatStyle.Popup;
             BtnBorrarTodo.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             BtnBorrarTodo.ForeColor = SystemColors.ActiveCaptionText;
-            BtnBorrarTodo.Location = new Point(350, 146);
+            BtnBorrarTodo.Location = new Point(348, 198);
             BtnBorrarTodo.Name = "BtnBorrarTodo";
             BtnBorrarTodo.Size = new Size(76, 60);
             BtnBorrarTodo.TabIndex = 18;
@@ -313,7 +314,7 @@
             Btn0.FlatStyle = FlatStyle.Popup;
             Btn0.Font = new Font("Segoe UI Black", 20F, FontStyle.Bold);
             Btn0.ForeColor = SystemColors.ActiveCaptionText;
-            Btn0.Location = new Point(12, 278);
+            Btn0.Location = new Point(10, 330);
             Btn0.Name = "Btn0";
             Btn0.Size = new Size(243, 60);
             Btn0.TabIndex = 19;
@@ -322,24 +323,35 @@
             Btn0.UseVisualStyleBackColor = false;
             Btn0.Click += Btn0_Click;
             // 
-            // lbSalidaResultado
+            // lbNumero
             // 
-            lbSalidaResultado.BackColor = Color.Transparent;
-            lbSalidaResultado.Font = new Font("Segoe UI Black", 22F, FontStyle.Bold);
-            lbSalidaResultado.Location = new Point(18, 9);
-            lbSalidaResultado.Name = "lbSalidaResultado";
-            lbSalidaResultado.Size = new Size(410, 60);
-            lbSalidaResultado.TabIndex = 0;
-            lbSalidaResultado.Text = "0";
-            lbSalidaResultado.TextAlign = ContentAlignment.MiddleRight;
+            lbNumero.BackColor = Color.Transparent;
+            lbNumero.Font = new Font("Segoe UI Black", 22F, FontStyle.Bold);
+            lbNumero.Location = new Point(16, 61);
+            lbNumero.Name = "lbNumero";
+            lbNumero.Size = new Size(410, 60);
+            lbNumero.TabIndex = 0;
+            lbNumero.Text = "0";
+            lbNumero.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lbFormula
+            // 
+            lbFormula.BackColor = Color.Transparent;
+            lbFormula.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold);
+            lbFormula.Location = new Point(10, 9);
+            lbFormula.Name = "lbFormula";
+            lbFormula.Size = new Size(416, 52);
+            lbFormula.TabIndex = 20;
+            lbFormula.TextAlign = ContentAlignment.MiddleRight;
             // 
             // CalculadoraFrom
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GrayText;
-            ClientSize = new Size(438, 350);
-            Controls.Add(lbSalidaResultado);
+            ClientSize = new Size(438, 403);
+            Controls.Add(lbFormula);
+            Controls.Add(lbNumero);
             Controls.Add(Btn0);
             Controls.Add(BtnBorrarTodo);
             Controls.Add(BtnBorrar);
@@ -347,7 +359,7 @@
             Controls.Add(BtnSuma);
             Controls.Add(BtnMultipicacion);
             Controls.Add(BtnDivicion);
-            Controls.Add(BtnResultado);
+            Controls.Add(BtnIgual);
             Controls.Add(BtnComa);
             Controls.Add(Btn9);
             Controls.Add(Btn8);
@@ -380,14 +392,15 @@
         private Button Btn8;
         private Button Btn9;
         private Button BtnComa;
-        private Button BtnResultado;
+        private Button BtnIgual;
         private Button BtnDivicion;
         private Button BtnMultipicacion;
         private Button BtnSuma;
         private Button BtnResta;
         private Button BtnBorrar;
         private Button BtnBorrarTodo;
-        private Label lbSalidaResultado;
+        private Label lbNumero;
         protected Button Btn0;
+        private Label lbFormula;
     }
 }

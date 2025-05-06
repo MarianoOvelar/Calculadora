@@ -9,17 +9,16 @@ namespace Calculadora
     public class Operador
     {
         private delegate float Operacion(float[] num);
-        static private Dictionary<int, Operacion> operaciones = new Dictionary<int, Operacion>();
+        static private Dictionary<char, Operacion> operaciones = new Dictionary<char, Operacion>();
         static Operador() {
-            operaciones.Add(1, Sumar);
-            operaciones.Add(2, Resta);
-            operaciones.Add(3, Multiplicacion);
-            operaciones.Add(4, Divicion);
+            operaciones.Add('+', Sumar);
+            operaciones.Add('-', Resta);
+            operaciones.Add('*', Multiplicacion);
+            operaciones.Add('/', Divicion);
         }
-        static public float hacerOperacion(int opcionElegida)
+        static public float hacerOperacion(float num1,float num2,char opeElegida)
         {
-            Console.Clear();
-            return operaciones[opcionElegida](pedriNumeros());
+            return operaciones[opeElegida]([num1,num2]);
         }
         static private float Sumar(float[] num) { return num[0] + num[1]; }
         static private float Resta(float[] num) { return num[0] - num[1]; }
@@ -28,19 +27,6 @@ namespace Calculadora
         {
             Exception ex = new DivideByZeroException("No se puede dividir por cero.");
             return num[1] == 0 ? throw ex : (num[0] / num[1]);
-        }
-        static private float[] pedriNumeros()
-        {
-            float[] num = [0, 0];
-            int index = 0;
-            do
-            {
-                Console.WriteLine($"ingres el valor {index + 1}");
-                //si recive un numero lo guarda, luego incrementa index.
-                if (float.TryParse(Console.ReadLine(), out num[index])) index++;
-                else Console.WriteLine("Solo puede ingresar numeros");
-            } while (index < 2);
-            return num;
         }
     }
 }

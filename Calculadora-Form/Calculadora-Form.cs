@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Calculadora;
 
 namespace Calculadora_Form
 {
@@ -7,58 +8,126 @@ namespace Calculadora_Form
         public CalculadoraFrom()
         {
             InitializeComponent();
-            this.KeyPreview = true; // Asegúrate de que esto esté aquí
-
+            this.KeyPreview = true;
         }
 
         #region BtnNum
-        private void Btn0_Click(object sender, EventArgs e) { modificarLabel("0"); }
-        private void Btn1_Click(object sender, EventArgs e) { modificarLabel("1"); }
-        private void Btn2_Click(object sender, EventArgs e) { modificarLabel("2"); }
-        private void Btn3_Click(object sender, EventArgs e) { modificarLabel("3"); }
-        private void Btn4_Click(object sender, EventArgs e) { modificarLabel("4"); }
-        private void Btn5_Click(object sender, EventArgs e) { modificarLabel("5"); }
-        private void Btn6_Click(object sender, EventArgs e) { modificarLabel("6"); }
-        private void Btn7_Click(object sender, EventArgs e) { modificarLabel("7"); }
-        private void Btn8_Click(object sender, EventArgs e) { modificarLabel("8"); }
-        private void Btn9_Click(object sender, EventArgs e) { modificarLabel("9"); }
+        private void Btn0_Click(object sender, EventArgs e) { modificarLabelNumero("0"); }
+        private void Btn1_Click(object sender, EventArgs e) { modificarLabelNumero("1"); }
+        private void Btn2_Click(object sender, EventArgs e) { modificarLabelNumero("2"); }
+        private void Btn3_Click(object sender, EventArgs e) { modificarLabelNumero("3"); }
+        private void Btn4_Click(object sender, EventArgs e) { modificarLabelNumero("4"); }
+        private void Btn5_Click(object sender, EventArgs e) { modificarLabelNumero("5"); }
+        private void Btn6_Click(object sender, EventArgs e) { modificarLabelNumero("6"); }
+        private void Btn7_Click(object sender, EventArgs e) { modificarLabelNumero("7"); }
+        private void Btn8_Click(object sender, EventArgs e) { modificarLabelNumero("8"); }
+        private void Btn9_Click(object sender, EventArgs e) { modificarLabelNumero("9"); }
+        private void BtnComa_Click(object sender, EventArgs e) { modificarLabelNumero(","); }
+
         #endregion
-        #region Borrar
+
+        #region BtnBorrar
         private void BtnBorrar_Click(object sender, EventArgs e)
         {
-            this.lbSalidaResultado.Text = this.lbSalidaResultado.Text.Substring(0, this.lbSalidaResultado.Text.Length - 1);
-            if (this.lbSalidaResultado.Text.Length == 0) modificarLabel("0");
+            this.lbNumero.Text = this.lbNumero.Text.Substring(0, this.lbNumero.Text.Length - 1);
+            if (this.lbNumero.Text.Length == 0) modificarLabelNumero("0");
         }
-        private void BtnBorrarTodo_Click(object sender, EventArgs e) { this.lbSalidaResultado.Text = "0"; }
+        private void BtnBorrarTodo_Click(object sender, EventArgs e) { this.RestaurarTodo(); }
         #endregion
-        #region Funciones
-        private void modificarLabel(string texto)
+
+        #region BtnOperadores
+        private void BtnSuma_Click(object sender, EventArgs e) { ModificarOperador('+'); }
+        private void BtnResta_Click(object sender, EventArgs e) { ModificarOperador('-'); }
+        private void BtnMultipicacion_Click(object sender, EventArgs e) { ModificarOperador('*'); }
+        private void BtnDivicion_Click(object sender, EventArgs e) { ModificarOperador('/'); }
+        private void BtnIgual_Click(object sender, EventArgs e)
         {
-
-            if (this.lbSalidaResultado.Text == "0") this.lbSalidaResultado.Text = texto;
-            else this.lbSalidaResultado.Text += texto;
-
-
+            sePresionoIgual = true;
+            this.Calcular();
         }
         #endregion
-        #region Operadores
-        private void BtnSuma_Click(object sender, EventArgs e) { modificarLabel("+"); }
-        private void BtnResta_Click(object sender, EventArgs e) { modificarLabel("-"); }
-        private void BtnMultipicacion_Click(object sender, EventArgs e) { modificarLabel("x"); }
-        private void BtnDivicion_Click(object sender, EventArgs e) { modificarLabel("÷"); }
-        private void BtnComa_Click(object sender, EventArgs e) { modificarLabel(","); }
-        private void BtnResultado_Click(object sender, EventArgs e) { modificarLabel("="); }
+
+        #region ModificarLabel
+        private void modificarLabelNumero(string texto)
+        {
+            if (this.lbNumero.Text == "0" || seIngresaOtroNumero) this.lbNumero.Text = texto;
+            else this.lbNumero.Text += texto;
+            seIngresaOtroNumero = false;
+        }
         #endregion
-        private bool enterPresionadoRecientemente = false;
+        
+        #region Funciones
+        private void RestaurarTodo()
+        {
+            this.operadorSelecionado = ' ';
+            this.num1 = 0;
+            this.num2 = 0;
+            this.resultado = 0;
+            this.lbNumero.Text = "0";
+            this.lbFormula.Text = "";
+            this.seIngresaOtroNumero = false;
+        }
+
+        private void ModificarOperador(char operador)
+        {
+            if (!seIngresaOtroNumero) Calcular();
+            seIngresaOtroNumero = true;
+            if (this.operadorSelecionado == ' ') this.num1 = float.Parse(this.lbNumero.Text);
+            this.operadorSelecionado = operador;
+            this.lbFormula.Text = this.num1.ToString() + operador;
+
+        }
+
+        private void Calcular()
+        {
+            if (this.operadorSelecionado == ' ')
+            {
+                this.num1 = float.Parse(this.lbNumero.Text);
+                this.lbFormula.Text = this.num1.ToString() + "=";
+                return;
+            }
+
+            if (sePresionoIgual)
+            {
+                if (!seIngresaOtroNumero)
+                {
+                    this.num2 = float.Parse(this.lbNumero.Text);
+                    this.lbFormula.Text = this.num1.ToString() + operadorSelecionado + this.num2.ToString() + "=";
+                    this.resultado = Operador.hacerOperacion(this.num1, this.num2, this.operadorSelecionado);
+                    this.lbNumero.Text = this.resultado.ToString();
+                    this.num1 = this.resultado;
+                    this.numAux = num2;
+                    seIngresaOtroNumero = true;
+                }
+                else
+                {
+                    this.lbFormula.Text = this.resultado.ToString() + operadorSelecionado + this.numAux.ToString() + "=";
+                    this.resultado = Operador.hacerOperacion(this.resultado, this.numAux, this.operadorSelecionado);
+                    this.lbNumero.Text = this.resultado.ToString();
+                    this.num1 = this.resultado;
+
+                }
+                sePresionoIgual = false;
+                return;
+            }
+            this.num2 = float.Parse(this.lbNumero.Text);
+            this.resultado = Operador.hacerOperacion(this.num1, this.num2, this.operadorSelecionado);
+            this.lbNumero.Text = this.resultado.ToString();
+            this.num1 = this.resultado;
+            this.lbFormula.Text = this.num1.ToString() + operadorSelecionado;
+        }
+        #endregion
 
         private void CalculadoraFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
             string operadores = "+-*/";
             if (char.IsDigit(e.KeyChar) || operadores.IndexOf(e.KeyChar) != -1)
             {
-                if (e.KeyChar == '*') modificarLabel("x");
-                else if (e.KeyChar == '/') modificarLabel("÷");
-                else modificarLabel(e.KeyChar.ToString());
+                if (e.KeyChar == '*') BtnMultipicacion_Click(sender, e);
+                else if (e.KeyChar == '/') BtnDivicion_Click(sender, e);
+                else if (e.KeyChar == '+') BtnSuma_Click(sender, e);
+                else if (e.KeyChar == '-') BtnResta_Click(sender, e);
+                else this.lbFormula.Text += e.KeyChar.ToString();
             }
             if (e.KeyChar == (char)Keys.Back)
             {
@@ -70,11 +139,24 @@ namespace Calculadora_Form
             }
             if (e.KeyChar == (char)Keys.Enter)
             {
-                BtnResultado_Click(sender, e);
+                BtnIgual_Click(sender, e);
 
             }
         }
 
-    }
 
+
+
+
+        #region Variables
+        private char operadorSelecionado = ' ';
+        private float num1 = 0;
+        private float num2 = 0;
+        private float numAux = 0;
+        private float resultado = 0;
+        private bool sePresionoIgual = false;
+        private bool seIngresaOtroNumero = false;
+
+        #endregion
+    }
 }
