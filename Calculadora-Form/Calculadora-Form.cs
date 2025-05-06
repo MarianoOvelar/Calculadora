@@ -50,12 +50,22 @@ namespace Calculadora_Form
         #region ModificarLabel
         private void modificarLabelNumero(string texto)
         {
-            if (this.lbNumero.Text == "0" || seIngresaOtroNumero) this.lbNumero.Text = texto;
-            else this.lbNumero.Text += texto;
+            if (!this.lbNumero.Text.Contains(",") && texto == ",")
+            {
+                this.lbNumero.Text += texto;
+            }
+            else
+            {
+                if (this.lbNumero.Text == "0" || seIngresaOtroNumero&& texto != ",") this.lbNumero.Text = texto;
+                else if (texto != ",") this.lbNumero.Text += texto;
+                else this.lbNumero.Text = "0,";
+            }
+
+
             seIngresaOtroNumero = false;
         }
         #endregion
-        
+
         #region Funciones
         private void RestaurarTodo()
         {
@@ -80,41 +90,50 @@ namespace Calculadora_Form
 
         private void Calcular()
         {
-            if (this.operadorSelecionado == ' ')
+            try
             {
-                this.num1 = float.Parse(this.lbNumero.Text);
-                this.lbFormula.Text = this.num1.ToString() + "=";
-                return;
-            }
-
-            if (sePresionoIgual)
-            {
-                if (!seIngresaOtroNumero)
+                if (this.operadorSelecionado == ' ')
                 {
-                    this.num2 = float.Parse(this.lbNumero.Text);
-                    this.lbFormula.Text = this.num1.ToString() + operadorSelecionado + this.num2.ToString() + "=";
-                    this.resultado = Operador.hacerOperacion(this.num1, this.num2, this.operadorSelecionado);
-                    this.lbNumero.Text = this.resultado.ToString();
-                    this.num1 = this.resultado;
-                    this.numAux = num2;
-                    seIngresaOtroNumero = true;
+                    this.num1 = float.Parse(this.lbNumero.Text);
+                    this.lbFormula.Text = this.num1.ToString() + "=";
+                    return;
                 }
-                else
-                {
-                    this.lbFormula.Text = this.resultado.ToString() + operadorSelecionado + this.numAux.ToString() + "=";
-                    this.resultado = Operador.hacerOperacion(this.resultado, this.numAux, this.operadorSelecionado);
-                    this.lbNumero.Text = this.resultado.ToString();
-                    this.num1 = this.resultado;
 
+                if (sePresionoIgual)
+                {
+                    if (!seIngresaOtroNumero)
+                    {
+                        this.num2 = float.Parse(this.lbNumero.Text);
+                        this.lbFormula.Text = this.num1.ToString() + operadorSelecionado + this.num2.ToString() + "=";
+                        this.resultado = Operador.hacerOperacion(this.num1, this.num2, this.operadorSelecionado);
+                        this.lbNumero.Text = this.resultado.ToString();
+                        this.num1 = this.resultado;
+                        this.numAux = num2;
+                        seIngresaOtroNumero = true;
+                    }
+                    else
+                    {
+                        this.lbFormula.Text = this.resultado.ToString() + operadorSelecionado + this.numAux.ToString() + "=";
+                        this.resultado = Operador.hacerOperacion(this.resultado, this.numAux, this.operadorSelecionado);
+                        this.lbNumero.Text = this.resultado.ToString();
+                        this.num1 = this.resultado;
+
+                    }
+                    sePresionoIgual = false;
+                    return;
                 }
-                sePresionoIgual = false;
-                return;
+                this.num2 = float.Parse(this.lbNumero.Text);
+                this.resultado = Operador.hacerOperacion(this.num1, this.num2, this.operadorSelecionado);
+                this.lbNumero.Text = this.resultado.ToString();
+                this.num1 = this.resultado;
+                this.lbFormula.Text = this.num1.ToString() + operadorSelecionado;
             }
-            this.num2 = float.Parse(this.lbNumero.Text);
-            this.resultado = Operador.hacerOperacion(this.num1, this.num2, this.operadorSelecionado);
-            this.lbNumero.Text = this.resultado.ToString();
-            this.num1 = this.resultado;
-            this.lbFormula.Text = this.num1.ToString() + operadorSelecionado;
+            catch (Exception ex)
+            {       
+                this.RestaurarTodo();
+                this.lbFormula.Text = ex.Message;
+            }
+            
         }
         #endregion
 

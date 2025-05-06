@@ -336,11 +336,13 @@
             // 
             // lbFormula
             // 
+            lbFormula.Anchor = AnchorStyles.Top;
             lbFormula.BackColor = Color.Transparent;
-            lbFormula.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold);
-            lbFormula.Location = new Point(10, 9);
+            lbFormula.Font = new Font("Segoe UI Black", 14F, FontStyle.Bold);
+            lbFormula.Location = new Point(-63, 9);
+            lbFormula.Margin = new Padding(0);
             lbFormula.Name = "lbFormula";
-            lbFormula.Size = new Size(416, 52);
+            lbFormula.Size = new Size(487, 52);
             lbFormula.TabIndex = 20;
             lbFormula.TextAlign = ContentAlignment.MiddleRight;
             // 
