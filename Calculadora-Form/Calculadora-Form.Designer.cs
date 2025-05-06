@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalculadoraFrom));
             Btn1 = new Button();
             Btn2 = new Button();
             Btn3 = new Button();
@@ -374,6 +375,7 @@
             Controls.Add(Btn1);
             Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "CalculadoraFrom";
             StartPosition = FormStartPosition.CenterParent;
